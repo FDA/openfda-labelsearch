@@ -133,4 +133,6 @@ dist
 # IDEA
 .idea
 
+# Build
+public
 push-site.sh
