@@ -174,6 +174,7 @@ export default function DualSearch({searchHeader, errorText, placeholder, search
                 noRowsOverlayComponent={loadingOverlayComponent}
                 noRowsOverlayComponentParams={loadingOverlayComponentParams}
                 pagination={true}
+                domLayout='autoHeight'
               />
             </div>
           )}

@@ -193,6 +193,7 @@ export default function BasicSearch({searchHeader, errorText, placeholder, searc
                 noRowsOverlayComponent={loadingOverlayComponent}
                 noRowsOverlayComponentParams={loadingOverlayComponentParams}
                 pagination={true}
+                domLayout={drugs.length <5 ? 'autoHeight': 'normal'}
               />
             </div>
           )}
