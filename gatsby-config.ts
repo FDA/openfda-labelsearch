@@ -1,7 +1,7 @@
 import type { GatsbyConfig } from "gatsby";
 
 const config: GatsbyConfig = {
-  pathPrefix: `/fdalabels`,
+  // pathPrefix: `/fdalabels`,
   siteMetadata: {
     title: `FDA Online Label Repository`,
     siteUrl: `https://openfda-site.preprod.fda.gov`
