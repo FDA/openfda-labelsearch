@@ -1,2 +1,1 @@
-# openfda-fe-template
-Frontend template for modern openFDA-related websites.
+FDA Online Label Repository
