@@ -8,11 +8,11 @@ const IndexPage: React.FC<PageProps> = () => {
     <Layout>
       <BasicSearch
         searchHeader='NDC Number'
-        errorText='At least five characters are required.'
+        errorText='At least four characters are required.'
         placeholder='Type the 4 or 5 digit NDC Labeler Code with the hyphen (e.g. 0001-), the 8 or 9 digit NDC Product
             Code (e.g. 0001-0001), or the 10 digit NDC (0001-0001-01)'
         searchField='item_code'
-        searchLength={5}
+        searchLength={4}
         columnLabels={['Proprietary Name','NDC','Company Name','Application Number or Monograph ID','Product Type','Marketing Category']}
         tableType='standard'
         linkColumn='product_name'

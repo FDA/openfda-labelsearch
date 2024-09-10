@@ -16,14 +16,14 @@ const IndexPage: React.FC<PageProps> = () => {
         <div className='flex'>
           <div className='bg-white padding-3'>
             <h2>FDA Online Label Repository</h2>
-            <div className='flex flex-column flex-fill'>
-              <Link className='padding-1' to='/proprietary_name/'>Proprietary Name Search</Link>
-              <Link className='padding-1' to='/ndc_number/'>NDC Number Search</Link>
-              <Link className='padding-1' to='/active_ingredient/'>Active Ingredient Search</Link>
-              <Link className='padding-1' to='/application_number_or_monograph_id/'>Application Number or Monograph ID Search</Link>
-              <Link className='padding-1' to='/company_name/'>Company Name Search</Link>
-              <Link className='padding-1' to='/proprietary_name_and_company_name/'>Proprietary Name and Company Name Search</Link>
-            </div>
+            <ul className='link-columns'>
+              <li className='margin-bottom-1'><Link to='/proprietary_name/'>Proprietary Name Search</Link></li>
+              <li className='margin-bottom-1'><Link to='/ndc_number/'>NDC Number Search</Link></li>
+              <li className='margin-bottom-1'><Link to='/active_ingredient/'>Active Ingredient Search</Link></li>
+              <li className='margin-bottom-1'><Link to='/application_number_or_monograph_id/'>Application Number or Monograph ID Search</Link></li>
+              <li className='margin-bottom-1'><Link to='/company_name/'>Company Name Search</Link></li>
+              <li className='margin-bottom-1'><Link to='/proprietary_name_and_company_name/'>Proprietary Name and Company Name Search</Link></li>
+            </ul>
           </div>
         </div>
       </section>

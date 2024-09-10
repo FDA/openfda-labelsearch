@@ -1,6 +1,7 @@
 import React, {useState, useEffect, useMemo, useCallback} from "react"
 import { AgGridReact } from "ag-grid-react";
 import { TextInput, Alert } from '@trussworks/react-uswds'
+import { Link } from "gatsby";
 import CustomLoadingOverlay from "./CustomLoadingOverlay";
 import { API_LINK } from "../constants/api";
 
@@ -179,6 +180,9 @@ export default function DualSearch({searchHeader, errorText, placeholder, search
             </div>
           )}
         </div>
+      </div>
+      <div>
+        <Link to='/'>Back to the FDA Label Search Page</Link>
       </div>
     </div>
   )
