@@ -1,6 +1,6 @@
-import React, {useState, useEffect, useMemo, useCallback} from "react"
+import React, { useState, useEffect, useMemo, useCallback } from "react"
 import { AgGridReact } from "ag-grid-react";
-import { TextInput, Alert } from '@trussworks/react-uswds'
+import { Alert, TextInput } from '@trussworks/react-uswds'
 import { Link } from "gatsby";
 import CustomLoadingOverlay from "./CustomLoadingOverlay";
 import { API_LINK } from "../constants/api";
@@ -16,26 +16,36 @@ const FDA_LABEL_LINK = "https://www.accessdata.fda.gov/spl/data/" // ex: 210ad5f
 
 const column_map = {
   'standard': [
-    { field: 'product_name',
+    {
+      field: 'product_name',
       headerName: 'Proprietary Name',
-      sort: "asc",
+      sort: 'asc',
+      comparator: (valueA, valueB) => {
+        if (valueA.product_name == valueB.product_name) return 0;
+        return (valueA.product_name > valueB.product_name) ? 1 : -1;
+      },
       cellRenderer:(params) => {
         return <a href={FDA_LABEL_LINK + params.value.spl_id + '/' + params.value.spl_id + '.xml'} target="_blank">{params.value.product_name}</a>
       }
     },
-    { field: 'item_code',
+    {
+      field: 'item_code',
       headerName: 'NDC'
     },
-    { field: 'company_name',
+    {
+      field: 'company_name',
       headerName: 'Company Name'
     },
-    { field: 'application_number_or_monograph_id',
+    {
+      field: 'application_number_or_monograph_id',
       headerName: 'Application Number or Monograph ID'
     },
-    { field: 'product_type',
+    {
+      field: 'product_type',
       headerName: 'Product Type'
     },
-    { field: 'marketing_category',
+    {
+      field: 'marketing_category',
       headerName: 'Marketing Category'
     }
   ]
@@ -73,7 +83,6 @@ export default function DualSearch({searchHeader, errorText, placeholder, search
               'marketing_category': result.marketing_category
             })
           })
-          console.log(data)
           setDrugs(data)
           setErrMsg('')
         })
@@ -166,7 +175,7 @@ export default function DualSearch({searchHeader, errorText, placeholder, search
       <div className='grid-row flex-column'>
         <div className='grid-col padding-left-1'>
           {drugs && (
-            <div className="ag-theme-alpine" style={{height: 400, width: '100%'}}>
+            <div className="ag-theme-alpine margin-bottom-3" style={drugs.length <5 ? {height: 250}: {height: 400}}>
               <AgGridReact
                 rowData={drugs}
                 columnDefs={columnDefs}
@@ -175,13 +184,13 @@ export default function DualSearch({searchHeader, errorText, placeholder, search
                 noRowsOverlayComponent={loadingOverlayComponent}
                 noRowsOverlayComponentParams={loadingOverlayComponentParams}
                 pagination={true}
-                domLayout='autoHeight'
+                domLayout={drugs.length <5 ? 'autoHeight': 'normal'}
               />
             </div>
           )}
         </div>
       </div>
-      <div>
+      <div className='margin-left-1'>
         <Link to='/'>Back to the FDA Label Search Page</Link>
       </div>
     </div>
