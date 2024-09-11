@@ -21,8 +21,8 @@ const column_map = {
       headerName: 'Proprietary Name',
       sort: 'asc',
       comparator: (valueA, valueB) => {
-        if (valueA.product_name == valueB.product_name) return 0;
-        return (valueA.product_name > valueB.product_name) ? 1 : -1;
+        if (valueA.product_name.toLowerCase() == valueB.product_name.toLowerCase()) return 0;
+        return (valueA.product_name.toLowerCase() > valueB.product_name.toLowerCase()) ? 1 : -1;
       },
       cellRenderer:(params) => {
         return <a href={FDA_LABEL_LINK + params.value.spl_id + '/' + params.value.spl_id + '.xml'} target="_blank">{params.value.product_name}</a>
@@ -55,8 +55,8 @@ const column_map = {
       headerName: 'Ingredient Name',
       sort: "asc",
       comparator: (valueA, valueB) => {
-        if (valueA.active_ingredient_name == valueB.active_ingredient_name) return 0;
-        return (valueA.active_ingredient_name > valueB.active_ingredient_name) ? 1 : -1;
+        if (valueA.active_ingredient_name.toLowerCase() == valueB.active_ingredient_name.toLowerCase()) return 0;
+        return (valueA.active_ingredient_name.toLowerCase() > valueB.active_ingredient_name.toLowerCase()) ? 1 : -1;
       },
       cellRenderer:(params) => {
         return <a href={FDA_LABEL_LINK + params.value.spl_id + '/' + params.value.spl_id + '.xml'} target="_blank">{params.value.active_ingredient_name}</a>
@@ -66,8 +66,8 @@ const column_map = {
       field: 'product_name',
       headerName: 'Proprietary Name',
       comparator: (valueA, valueB) => {
-        if (valueA.product_name == valueB.product_name) return 0;
-        return (valueA.product_name > valueB.product_name) ? 1 : -1;
+        if (valueA.product_name.toLowerCase() == valueB.product_name.toLowerCase()) return 0;
+        return (valueA.product_name.toLowerCase() > valueB.product_name.toLowerCase()) ? 1 : -1;
       },
       cellRenderer:(params) => {
         return params.value.product_name
@@ -145,7 +145,11 @@ export default function BasicSearch({searchHeader, errorText, placeholder, searc
       setDrugs(null)
       setErrMsg(errorText)
     } else {
-      setSearchQuery(`${API_LINK}/drug/labelsearch.json?search=${searchField}:*${search}*&limit=1000`)
+      if (searchField === 'item_code') {
+        setSearchQuery(`${API_LINK}/drug/labelsearch.json?search=${searchField}.exact:${search}*&limit=1000`)
+      } else {
+        setSearchQuery(`${API_LINK}/drug/labelsearch.json?search=${searchField}:*${search}*&limit=1000`)
+      }
     }
   };
 

@@ -21,8 +21,8 @@ const column_map = {
       headerName: 'Proprietary Name',
       sort: 'asc',
       comparator: (valueA, valueB) => {
-        if (valueA.product_name == valueB.product_name) return 0;
-        return (valueA.product_name > valueB.product_name) ? 1 : -1;
+        if (valueA.product_name.toLowerCase() == valueB.product_name.toLowerCase()) return 0;
+        return (valueA.product_name.toLowerCase() > valueB.product_name.toLowerCase()) ? 1 : -1;
       },
       cellRenderer:(params) => {
         return <a href={FDA_LABEL_LINK + params.value.spl_id + '/' + params.value.spl_id + '.xml'} target="_blank">{params.value.product_name}</a>
